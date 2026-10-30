@@ -830,6 +830,7 @@ function updateCtx() {
   const a = annById(state.selected);
   const ctx = a ? a.type : state.tool;
   document.body.dataset.ctx = ctx;
+  $('#delBtn').parentElement.hidden = !a;
   $('#propsTitle').textContent = t('p_' + ctx);
   $('#hint').textContent = t('hint_' + (a ? 'select' : state.tool));
 }
