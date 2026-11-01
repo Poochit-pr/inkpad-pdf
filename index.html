@@ -165,6 +165,17 @@ body[data-tool="sign"] .layer { cursor: copy; touch-action: none; }
 .feat b { font: 600 15px/1.3 var(--display); }
 .feat span { color: var(--muted); font-size: 13px; line-height: 1.45; }
 .credits { font-size: 11.5px; color: var(--muted); }
+.more-tools { width: 100%; display: grid; gap: 10px; justify-items: center; }
+.more-tools b { font: 600 15px var(--display); }
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.chips a { padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); text-decoration: none; font-size: 13px; }
+.chips a:hover { border-color: var(--accent); color: var(--accent); }
+.menu { position: relative; }
+.menu > summary { list-style: none; }
+.menu > summary::-webkit-details-marker { display: none; }
+.menu-list { position: absolute; right: 0; top: calc(100% + 8px); width: 240px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow-pop); padding: 6px; display: grid; z-index: 20; }
+.menu-list a { padding: 9px 12px; border-radius: 8px; color: var(--ink); text-decoration: none; }
+.menu-list a:hover { background: var(--desk); }
 
 /* ---------- properties panel ---------- */
 .props { background: var(--panel); border-left: 1px solid var(--line); display: flex; flex-direction: column; min-height: 0; overflow: auto; }
@@ -294,6 +305,21 @@ dialog::backdrop { background: rgba(10, 12, 24, .5); }
   </div>
   <div class="spacer"></div>
 
+  <details class="menu" id="toolsMenu">
+    <summary class="btn ghost">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg>
+      <span class="lbl" data-i="toolsMenu"></span>
+    </summary>
+    <nav class="menu-list">
+      <a href="merge-pdf.html" data-i="tl_merge"></a>
+      <a href="split-pdf.html" data-i="tl_split"></a>
+      <a href="organize-pdf.html" data-i="tl_organize"></a>
+      <a href="pdf-to-jpg.html" data-i="tl_pdf2jpg"></a>
+      <a href="jpg-to-pdf.html" data-i="tl_jpg2pdf"></a>
+      <a href="watermark-pdf.html" data-i="tl_watermark"></a>
+      <a href="page-numbers-pdf.html" data-i="tl_pagenum"></a>
+    </nav>
+  </details>
   <div class="lang" role="group" aria-label="Language">
     <button data-lang="th" aria-pressed="true">TH</button>
     <button data-lang="en" aria-pressed="false">EN</button>
@@ -356,6 +382,18 @@ dialog::backdrop { background: rgba(10, 12, 24, .5); }
           <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 6V4h14v2M12 4v16M9 20h6"/></svg></div><b data-i="f1"></b><span data-i="f1d"></span></div>
           <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M15 4l5 5-8 8H7v-5z"/><path d="M4 21h16" stroke-linecap="round"/></svg></div><b data-i="f2"></b><span data-i="f2d"></span></div>
           <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c3-1 4-9 6-9s-1 9 1 9 3-5 4-5 1 3 3 3 2-1 4-1"/></svg></div><b data-i="f3"></b><span data-i="f3d"></span></div>
+        </div>
+        <div class="more-tools">
+          <b data-i="moreTools"></b>
+          <div class="chips">
+            <a href="merge-pdf.html" data-i="tl_merge"></a>
+            <a href="split-pdf.html" data-i="tl_split"></a>
+            <a href="organize-pdf.html" data-i="tl_organize"></a>
+            <a href="pdf-to-jpg.html" data-i="tl_pdf2jpg"></a>
+            <a href="jpg-to-pdf.html" data-i="tl_jpg2pdf"></a>
+            <a href="watermark-pdf.html" data-i="tl_watermark"></a>
+            <a href="page-numbers-pdf.html" data-i="tl_pagenum"></a>
+          </div>
         </div>
         <div class="credits" data-i="credits"></div>
       </div>
@@ -487,6 +525,8 @@ const I18N = {
     f1: 'เพิ่มข้อความ', f1d: 'พิมพ์ภาษาไทยได้ เลือกฟอนต์ ขนาด และสีได้',
     f2: 'ไฮไลต์', f2d: 'ทำเครื่องหมายจุดสำคัญ 5 สี ตัวอักษรยังอ่านชัด',
     f3: 'เซ็นชื่อ', f3d: 'วาดลายเซ็นหรืออัปโหลดรูป ลบพื้นขาวให้อัตโนมัติ',
+    toolsMenu: 'เครื่องมือ PDF', moreTools: 'เครื่องมือ PDF อื่น ๆ', tl_merge: 'รวมไฟล์ PDF', tl_split: 'แยกไฟล์ PDF', tl_organize: 'จัดเรียง หมุน ลบหน้า',
+    tl_pdf2jpg: 'PDF เป็น JPG', tl_jpg2pdf: 'รูปภาพเป็น PDF', tl_watermark: 'ใส่ลายน้ำ', tl_pagenum: 'ใส่เลขหน้า',
     credits: 'สร้างด้วย pdf.js และ pdf-lib · ฟอนต์ Sarabun, IBM Plex Sans Thai, Charm (SIL OFL)',
     p_select: 'เลือกและจัดวาง', p_text: 'ข้อความ', p_highlight: 'ไฮไลต์', p_sign: 'ลายเซ็น', p_image: 'ลายเซ็น',
     hint_select: 'คลิกเพื่อเลือก ลากเพื่อย้าย ลากจุดมุมขวาล่างเพื่อปรับขนาด',
@@ -522,6 +562,8 @@ const I18N = {
     f1: 'Add text', f1d: 'Thai and English supported. Pick font, size and color.',
     f2: 'Highlight', f2d: 'Mark key passages in 5 colors. Text stays readable.',
     f3: 'Sign', f3d: 'Draw your signature or upload a photo. White background removed for you.',
+    toolsMenu: 'PDF tools', moreTools: 'More PDF tools', tl_merge: 'Merge PDF', tl_split: 'Split PDF', tl_organize: 'Organize pages',
+    tl_pdf2jpg: 'PDF to JPG', tl_jpg2pdf: 'JPG to PDF', tl_watermark: 'Add watermark', tl_pagenum: 'Add page numbers',
     credits: 'Built with pdf.js and pdf-lib · Fonts: Sarabun, IBM Plex Sans Thai, Charm (SIL OFL)',
     p_select: 'Select & arrange', p_text: 'Text', p_highlight: 'Highlight', p_sign: 'Signature', p_image: 'Signature',
     hint_select: 'Click to select, drag to move, drag the bottom-right dot to resize.',
@@ -1068,7 +1110,9 @@ $('#sigOk').onclick = () => {
 $('#sigCancel').onclick = $('#sigClose').onclick = () => sigDlg.close();
 
 /* ---------- donate dialog ---------- */
-const PAYPAL_URL = 'https://paypal.me/PoochitPromtem'; // the PayPal card stays hidden while this is empty
+document.addEventListener('click', e => { const m = $('#toolsMenu'); if (m.open && !m.contains(e.target)) m.open = false; });
+
+const PAYPAL_URL ='https://paypal.me/PoochitPromtem'; // the PayPal card stays hidden while this is empty
 const donDlg = $('#donDlg');
 if (PAYPAL_URL) $('#paypalLink').href = PAYPAL_URL;
 else { $('#paypalCard').hidden = true; $('.donate-grid').classList.add('single'); }
